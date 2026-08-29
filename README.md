@@ -12,5 +12,5 @@ GTA3、VC、SA汉化补丁
 
 依赖项目
 ---
-</br>https://github.com/DK22Pac/plugin-sdk （下载好后在右键电脑->属性->高级系统设置->环境变量中添加PLUGIN_SDK_DIR，地址就是你这个plugin-sdk的地址）
-</br>http://utfcpp.sourceforge.net/ （这个项目中已经包含，可以不用去下载）
+https://github.com/DK22Pac/plugin-sdk （下载好后在右键电脑->属性->高级系统设置->环境变量中添加PLUGIN_SDK_DIR，地址就是你这个plugin-sdk的地址）</br>
+http://utfcpp.sourceforge.net/ （这个项目中已经包含，可以不用去下载）
