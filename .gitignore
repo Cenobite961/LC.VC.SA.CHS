@@ -1,0 +1,14 @@
+.vs/
+Debug/
+Release/
+x64/
+**/bin/
+**/obj/
+*.user
+*.suo
+*.pdb
+*.obj
+*.exe
+*.dll
+*.userosscache
+*.sln.docstates
