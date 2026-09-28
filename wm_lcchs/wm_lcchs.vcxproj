@@ -22,14 +22,14 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug GTA3|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -46,7 +46,7 @@
     <IgnoreImportLibrary>true</IgnoreImportLibrary>
     <OutDir>$(ProjectDir)bin\GTA3\Release\</OutDir>
     <IntDir>$(ProjectDir)obj\GTA3\Release\</IntDir>
-    <TargetName>wm_lcchs.III</TargetName>
+    <TargetName>wm_lcchs</TargetName>
     <TargetExt>.asi</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug GTA3|Win32'">
@@ -54,7 +54,7 @@
     <IgnoreImportLibrary>true</IgnoreImportLibrary>
     <OutDir>$(ProjectDir)bin\GTA3\Debug\</OutDir>
     <IntDir>$(ProjectDir)obj\GTA3\Debug\</IntDir>
-    <TargetName>wm_lcchs.III</TargetName>
+    <TargetName>wm_lcchs</TargetName>
     <TargetExt>.asi</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release GTA3|Win32'">

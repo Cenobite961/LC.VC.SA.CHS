@@ -9,6 +9,16 @@
 
 namespace FontPatch
 {
+
+    static void* g_fpRwRenderStateSet = nullptr;
+    static void* g_fpRwIm2DRenderPrimitive = nullptr;
+    RwBool RwRenderStateSet(RwRenderState state, void* value) {
+        return ((RwBool(__cdecl*)(RwRenderState, void*))(g_fpRwRenderStateSet))(state, value);
+    }
+    RwBool RwIm2DRenderPrimitive(RwPrimitiveType prim, RwD3D8Vertex* verts, RwInt32 num) {
+        return ((RwBool(__cdecl*)(RwPrimitiveType, RwD3D8Vertex*, RwInt32))(g_fpRwIm2DRenderPrimitive))(prim, verts, num);
+    }
+
     typedef wchar_t CharType;
 
     CharType* (__cdecl* fnGInput_ParseToken)(CharType*, CRGBA&, bool&, bool&);
@@ -200,7 +210,7 @@ namespace FontPatch
     }
 
     short GetNumberLines(float x, float y, CharType* text) {
-        short lines = 0;
+        short lines = 1;
         float curX = (g_Details->m_bCentre || g_Details->m_bRightJustify) ? 0.0f : x;
         float curY = y;
         while (*text) {
@@ -220,9 +230,6 @@ namespace FontPatch
                 if (*text == ' ') {
                     curX += GetCharacterSize(' ');
                     ++text;
-                }
-                else if (*text == 0) {
-                    ++lines;
                 }
             }
             else {
@@ -285,11 +292,11 @@ namespace FontPatch
         RwTexture* tex = (g_Details->m_nStyle == 0) ?
             g_ChsSlantSprite.m_pTexture : g_ChsSprite.m_pTexture;
         RwRaster* raster = *(RwRaster**)((char*)tex + 0);
-        RwRenderStateSet(rwRENDERSTATETEXTURERASTER, raster);
-        RwRenderStateSet(rwRENDERSTATEVERTEXALPHAENABLE, (void*)1);
-        RwRenderStateSet(rwRENDERSTATETEXTUREFILTER, (void*)2);
-        RwIm2DRenderPrimitive(rwPRIMTYPETRILIST, verts, 6);
-        RwRenderStateSet(rwRENDERSTATEVERTEXALPHAENABLE, nullptr);
+        FontPatch::RwRenderStateSet(rwRENDERSTATETEXTURERASTER, raster);
+        FontPatch::RwRenderStateSet(rwRENDERSTATEVERTEXALPHAENABLE, (void*)1);
+        FontPatch::RwRenderStateSet(rwRENDERSTATETEXTUREFILTER, (void*)2);
+        FontPatch::RwIm2DRenderPrimitive(rwPRIMTYPETRILIST, verts, 6);
+        FontPatch::RwRenderStateSet(rwRENDERSTATEVERTEXALPHAENABLE, nullptr);
     }
 
     void PrintCharDispatcher(float x, float y, CharType ch) {
@@ -398,13 +405,6 @@ namespace FontPatch
                         tokenChar == L'w' || tokenChar == L'y')
                     {
                         ApplyColorCode(tokenChar);
-                        text = p + 1;
-                        continue;
-                    }
-                    if (tokenChar == L'n' || tokenChar == L'N')
-                    {
-                        x = lineStartX;
-                        y += CHS_CHAR_HEIGHT * g_Details->m_vScale.y;
                         text = p + 1;
                         continue;
                     }
